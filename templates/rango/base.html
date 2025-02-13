@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rango</title>
+</head>
+<body>
+    <h1>Welcome to Rango!</h1>
+
+    <div>
+        <a href="{% url 'rango:index' %}">Home</a> |
+        <a href="{% url 'rango:about' %}">About</a>
+    </div>
+
+    <hr>
+
+    <div>
+        {% block content %}
+        <!-- 子模板会填充这里 -->
+        {% endblock %}
+    </div>
+
+    <hr>
+
+    <footer>
+        <p>Rango - A Django Tutorial Project</p>
+    </footer>
+</body>
+</html>

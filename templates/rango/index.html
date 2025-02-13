@@ -11,32 +11,40 @@
         <strong>{{ boldmessage }}</strong><br />
     </div>
 
+
+
+    <h2>Categories</h2>
+<ul>
+    {% if categories %}
+        {% for category in categories %}
+            <li>
+                <a href="{% url 'rango:show_category' category.slug %}">{{ category.name }}</a>
+            </li>
+        {% endfor %}
+    {% else %}
+        <li>No categories available.</li>
+    {% endif %}
+</ul>
+
+    <h2>Pages</h2>
+    <ul>
+        {% if pages %}
+            {% for page in pages %}
+                <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+            {% endfor %}
+        {% else %}
+            <li>No pages available.</li>
+        {% endif %}
+    </ul>
+
+
+
     <div>
         <a href="{% url 'rango:about' %}">About</a><br />
         <img src="{% static 'images/rango.jpg' %}" alt="Rango image">
         <img src="{% static 'images/logo.png' %}" alt="Logo">
         <img src="{{ MEDIA_URL }}test.jpg" alt="Test Image">
     </div>
-
-    <h2>Categories</h2>
-        <ul>
-          {% for category in categories %}
-             <li>{{ category.name }}</li>
-          {% empty %}
-              <li>No categories available.</li>
-        {% endfor %}
-        </ul>
-
-     <h2>Pages</h2>
-     <ul>
-    {% for page in pages %}
-        <li><a href="{{ page.url }}">{{ page.title }}</a></li>
-    {% empty %}
-        <li>No pages available.</li>
-    {% endfor %}
-</ul>
-
-
 
 
 </body>
