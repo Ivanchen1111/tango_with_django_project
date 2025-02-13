@@ -1,30 +1,27 @@
+{% extends 'rango/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Rango Home</title>
-</head>
-<body>
+
+{% block title_block %}Homepage{% endblock %}
+
+{% block body_block %}
     <h1>Rango says...</h1>
     <div>
-        hey there partner! <br />
+        Hey there, partner! <br />
         <strong>{{ boldmessage }}</strong><br />
     </div>
 
-
-
     <h2>Categories</h2>
-<ul>
-    {% if categories %}
-        {% for category in categories %}
-            <li>
-                <a href="{% url 'rango:show_category' category.slug %}">{{ category.name }}</a>
-            </li>
-        {% endfor %}
-    {% else %}
-        <li>No categories available.</li>
-    {% endif %}
-</ul>
+    <ul>
+        {% if categories %}
+            {% for category in categories %}
+                <li>
+                    <a href="{% url 'rango:show_category' category.slug %}">{{ category.name }}</a>
+                </li>
+            {% endfor %}
+        {% else %}
+            <li>No categories available.</li>
+        {% endif %}
+    </ul>
 
     <h2>Pages</h2>
     <ul>
@@ -37,16 +34,11 @@
         {% endif %}
     </ul>
 
-
-
     <div>
-        <a href="/rango/add_category/">Add a New Category</a><br />
+        <a href="{% url 'rango:add_category' %}">Add a New Category</a><br />
         <a href="{% url 'rango:about' %}">About</a><br />
         <img src="{% static 'images/rango.jpg' %}" alt="Rango image">
-        <img src="{% static 'images/logo.png' %}" alt="Logo">
+        <img src="{% static 'images/cat.jpg' %}" alt="cat image">
         <img src="{{ MEDIA_URL }}test.jpg" alt="Test Image">
     </div>
-
-
-</body>
-</html>
+{% endblock %}

@@ -3,6 +3,7 @@ from rango.forms import CategoryForm, PageForm  # 确保引入 PageForm
 from rango.models import Category, Page
 from django.urls import reverse
 
+
 def index(request):
     # 获取点赞最多的 5 个 Category（按 likes 降序排序）
     category_list = Category.objects.order_by('-likes')[:5]
