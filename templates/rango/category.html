@@ -1,14 +1,25 @@
-{% if category %}
-    <h1>{{ category.name }}</h1>
-    {% if pages %}
-        <ul>
-            {% for page in pages %}
-                <li><a href="{{ page.url }}">{{ page.title }}</a></li>
-            {% endfor %}
-        </ul>
+{% extends 'rango/base.html' %}
+
+{% block content %}
+    {% if category %}
+        <h1>{{ category.name }}</h1>
+
+        {% if pages %}
+            <ul>
+                {% for page in pages %}
+                    <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <strong>No pages currently in category.</strong>
+        {% endif %}
+
+        <!-- 添加新页面的链接 -->
+        <p><a href="/rango/category/{{ category.slug }}/add_page/">Add a Page</a></p>
+
+
     {% else %}
-        <strong>No pages currently in category.</strong>
+        <p>The specified category does not exist.</p>
     {% endif %}
-{% else %}
-    <p>The specified category does not exist.</p>
-{% endif %}
+{% endblock %}
+
