@@ -2,4 +2,8 @@
 {% for category in categories %}
     <li><a href="{% url 'rango:show_category' category.slug %}">{{ category.name }}</a></li>
 {% endfor %}
+
+{% if user.is_authenticated %}
+    <a href="{% url 'rango:add_page' category.slug %}">添加新页面</a>
+{% endif %}
 </ul>

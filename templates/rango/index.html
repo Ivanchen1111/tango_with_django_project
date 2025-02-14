@@ -5,8 +5,14 @@
 
 {% block body_block %}
     <h1>Rango says...</h1>
+    <p>You have visited this page {{ visits }} times.</p>
+
     <div>
-        Hey there, partner! <br />
+        {% if user.is_authenticated %}
+            <h2>Howdy, {{ user.username }}!</h2>
+        {% else %}
+            <h2>Hey there partner!</h2>
+        {% endif %}
         <strong>{{ boldmessage }}</strong><br />
     </div>
 
@@ -35,10 +41,12 @@
     </ul>
 
     <div>
-        <a href="{% url 'rango:add_category' %}">Add a New Category</a><br />
-        <a href="{% url 'rango:about' %}">About</a><br />
         <img src="{% static 'images/rango.jpg' %}" alt="Rango image">
-        <img src="{% static 'images/cat.jpg' %}" alt="cat image">
-        <img src="{{ MEDIA_URL }}test.jpg" alt="Test Image">
+        <img src="{% static 'images/cat.jpg' %}" alt="Cat image">
+        {% if MEDIA_URL %}
+            <img src="{{ MEDIA_URL }}test.jpg" alt="Test Image">
+        {% else %}
+            <p>Media URL is not configured properly.</p>
+        {% endif %}
     </div>
 {% endblock %}

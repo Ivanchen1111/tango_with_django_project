@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Category(models.Model):
@@ -34,3 +35,16 @@ class Page(models.Model):
 
     def __str__(self):
         return self.title  # 让 Django 在管理界面显示标题
+
+
+
+class UserProfile(models.Model):
+    # 关联 User 模型，一对一关系
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    # 额外字段
+    website = models.URLField(blank=True)  # 可选的个人网站
+    picture = models.ImageField(upload_to='profile_images', blank=True)  # 可选的头像
+
+    def __str__(self):
+        return self.user.username  # 返回用户名作为对象的字符串表示
